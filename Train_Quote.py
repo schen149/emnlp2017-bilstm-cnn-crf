@@ -34,7 +34,7 @@ logger.addHandler(ch)
 ######################################################
 datasets = {
     'quote_direct':                            #Name of the dataset
-        {'columns': {0:'QUOTE_BIO', 4:'tokens'},   #CoNLL format for the input data. Column 1 contains tokens, column 3 contains POS information
+        {'columns': {0:'QUOTE_BIO', 1:'tokens'},   #CoNLL format for the input data. Column 1 contains tokens, column 3 contains POS information
          'label': 'QUOTE_BIO',                     #Which column we like to predict
          'evaluate': True,                   #Should we evaluate on this task? Set true always for single task setups
          'commentSymbol': None}              #Lines in the input data starting with this string will be skipped. Can be used to skip comments

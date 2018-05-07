@@ -12,13 +12,17 @@ outpath = argv[2]
 
 with open(conll_path, 'r') as fin, open(outpath, 'w+') as fout:
     for line in fin:
-        newline = line
         if line.rstrip():
-            parts = line.split('\t')
+            _parts = line.split('\t')
+            parts = [_parts[0], _parts[5].lstrip()]
             bio_label = parts[0]
             if bio_label.endswith("CUE") or bio_label.endswith("SOURCE"):
                 parts[0] = "O"
-                newline = "\t".join(parts)
 
-            fout.write(newline)
+            newline = "\t".join(parts) + '\n'
+        else:
+            newline = line
+
+        fout.write(newline)
+
 
