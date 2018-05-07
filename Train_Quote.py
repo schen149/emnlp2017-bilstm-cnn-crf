@@ -8,8 +8,6 @@ import sys
 from neuralnets.BiLSTM import BiLSTM
 from util.preprocessing import perpareDataset, loadDatasetPickle
 
-
-
 # :: Change into the working dir of the script ::
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -59,14 +57,14 @@ pickleFile = perpareDataset(embeddingsPath, datasets)
 embeddings, mappings, data = loadDatasetPickle(pickleFile)
 
 # Some network hyperparameters
-params = {'classifier': ['CRF'], 'LSTM-Size': [100], 'dropout': (0.25, 0.25)}
+params = {'classifier': ['CRF'], 'LSTM-Size': [100, 100], 'dropout': (0.25, 0.25)}
 
 model = BiLSTM(params)
 model.setMappings(mappings, embeddings)
 model.setDataset(datasets, data)
 model.storeResults('results/quote_direct.csv') #Path to store performance scores for dev / test
 model.modelSavePath = "models/[ModelName]_[DevScore]_[TestScore]_[Epoch].h5" #Path to store models
-model.fit(epochs=1)
+model.fit(epochs=20)
 
 
 
